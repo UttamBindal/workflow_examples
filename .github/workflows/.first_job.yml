@@ -10,9 +10,13 @@ concurrency:
 
 jobs:
     first_job:
+        strategy:
+          matrix:
+            os: [ubuntu-latest,windows-latest]
+            say: ["Hi my name is char lizard","I am dragon"]
         timeout-minutes: 3
         name: First Job
-        runs-on: ubuntu-latest
+        runs-on: ${{ matrix.os }}
         steps:
         - name: Checkout
           uses: actions/checkout@v6.0.2
@@ -24,7 +28,7 @@ jobs:
         - name: install cowsay
           run: sudo apt install cowsay -y
         - name: generate ascii artwork
-          run: cowsay -f dragon "${{ secrets.say }}" > dragon.txt
+          run: cowsay -f dragon "${{ matrix.say }}" > dragon.txt
         - name: upload artifact
           uses: actions/upload-artifact@v7.0.1
           with: 
