@@ -1,7 +1,12 @@
 name: my_first_job
 
-on: push
+on: 
+- push
+- workflow_dispatch
 
+concurrency:
+  group: deploy
+  cancel-in-progress: true
 jobs:
     first_job:
         name: First Job
@@ -23,6 +28,9 @@ jobs:
           with: 
             name: dragon.txt
             path: ./dragon.txt
+
+        - name: sleep
+          run: sleep 600
     test:
         name: test Job
         needs: first_job
