@@ -14,3 +14,8 @@ jobs:
            echo "My first GITHUB ACTION"
            ls  
            cat README.md
+        - name: Run ascii.sh
+          run: |
+           ls  -trlA
+           chmod +x ascii.sh
+           ./ascii.sh
