@@ -7,8 +7,10 @@ on:
 concurrency:
   group: deploy
   cancel-in-progress: true
+
 jobs:
     first_job:
+        timeout-minutes: 3
         name: First Job
         runs-on: ubuntu-latest
         steps:
