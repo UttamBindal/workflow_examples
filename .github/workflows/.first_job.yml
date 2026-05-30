@@ -34,9 +34,6 @@ jobs:
           with: 
             name: dragon.txt
             path: ./dragon.txt
-
-        - name: sleep
-          run: sleep 600
     test:
         name: test Job
         needs: first_job
