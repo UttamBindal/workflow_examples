@@ -17,6 +17,6 @@ jobs:
         - name: install cowsay
           run: sudo apt install cowsay -y
         - name: generate ascii artwork
-          run: cowsay -f dragon "I breathe fire!" > dargon.txt
+          run: cowsay -f dragon "I breathe fire!" > dragon.txt
         - name: print ascii art
           run: cat dragon.txt
