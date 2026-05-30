@@ -1,0 +1,22 @@
+name: ascii art work
+
+on: push
+
+jobs:
+    first_job:
+        name: ascii
+        runs-on: ubuntu-latest
+        steps:
+        - name: Checkout
+          uses: actions/checkout@v6.0.2
+        - name: List cat README
+          run: |
+           echo "My first GITHUB ACTION"
+           ls  
+           cat README.md
+        - name: install cowsay
+          run: sudo apt install cowsay -y
+        - name: generate ascii artwork
+          run: cowsay -f dragon "I breathe fire!" > dargon.txt
+        - name: print ascii art
+          run: cat dragon.txt
