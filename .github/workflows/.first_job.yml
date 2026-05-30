@@ -19,7 +19,7 @@ jobs:
         - name: generate ascii artwork
           env:
             say: I breathe fire!
-          run: cowsay -f dragon ""${{ env.say }}" > dragon.txt
+          run: cowsay -f dragon "${{ env.say }}" > dragon.txt
         - name: upload artifact
           uses: actions/upload-artifact@v7.0.1
           with: 
