@@ -14,8 +14,24 @@ jobs:
            echo "My first GITHUB ACTION"
            ls  
            cat README.md
-        - name: Run ascii.sh
-          run: |
-           ls  -trlA
-           chmod +x ascii.sh
-           ./ascii.sh
+        - name: install cowsay
+          run: sudo apt install cowsay -y
+        - name: generate ascii artwork
+          run: cowsay -f dragon "I breathe fire!" > dragon.txt
+        - name: upload artifact
+          uses: actions/upload-artifact@v7.0.1
+          with: 
+            name: dragon.txt
+            path: ./dragon.txt
+    test:
+        name: test Job
+        needs: first_job
+        runs-on: ubuntu-latest
+        steps:
+        - name: download artifact
+          uses: actions/download-artifact@v8
+          with:
+            name: dragon.txt
+
+        - name: print ascii art
+          run: cat dragon.txt
